@@ -3,15 +3,19 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    emberCliFontAwesome: {
+      useScss: true
+    }
   });
 
+  app.import('bower_components/moment/min/moment.min.js');
+  app.import('bower_components/underscore/underscore-min.js');
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
   // If you need to use different assets in different
   // environments, specify an object as the first parameter. That
-  // object's keys should be the environment name and the values
+  // object's keys should be thee nvironment name and the values
   // should be the asset to use in that environment.
   //
   // If the library that you are including contains AMD or ES6

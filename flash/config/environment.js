@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'flash',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -16,6 +16,13 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    contentSecurityPolicy: {
+      'script-src': "'self' 'unsafe-eval' https://*.googleapis.com https://*.gstatic.com",
+      'img-src': "'self' https://*.googleapis.com https://*.gstatic.com data *",
+      'font-src': "'self' https://*.gstatic.com",
+      'style-src': "'self' 'unsafe-inline' https://*.googleapis.com"
     }
   };
 

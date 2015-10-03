@@ -1,9 +1,9 @@
 <div class="login-outer">
   <div class="login-inner">
-    <h2><span class="brand">Sobeys</span> Flash</h2>
+    <h2><span class="brand">Sobeys</span> {{fa-icon "bolt"}} Flash</h2>
     {{input type="text" value=username placeholder="username"}}
     {{input type="password" value=password placeholder="password"}}
-    <button {{action 'login'}}>Login</button>
+    {{#link-to "dashboard" tagName="button"}}Login {{fa-icon "sign-in"}}{{/link-to}}
   </div>
 </div>
 

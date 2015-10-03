@@ -2,14 +2,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 90vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 .login-inner {
-  max-width: 35%;
+  max-width: 45%;
   text-align: center;
 
   input, button {
     display: block;
     margin: 0 auto 0.5em;
+  }
+
+  button {
+    margin: 1em auto 0;
+    font-size: 1.35em;
+  }
+
+  h2 {
+    font-size: 2.5em;
   }
 }

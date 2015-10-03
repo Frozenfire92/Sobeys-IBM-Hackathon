@@ -7,6 +7,11 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
+  this.route('dashboard', function() {
+    this.route('kiosks', function() {
+      this.route('kiosk');
+    });
+  });
 });
 
 export default Router;
