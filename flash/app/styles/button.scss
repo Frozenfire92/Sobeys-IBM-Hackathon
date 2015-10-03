@@ -1,0 +1,28 @@
+@import "color";
+
+button {
+    outline: none;
+    margin: 0;
+    background: $color-button;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-bottom: 1px solid rgba(0, 0, 0, .3);
+    cursor: pointer;
+    padding: .4em .8em;
+    text-rendering: optimizeLegibility;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 400;
+    color: inherit
+}
+
+button:hover,
+button.hover {
+    background: $color-button
+}
+
+button:active,
+button.active {
+    background: $color-button;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-top: 1px solid rgba(0, 0, 0, .3);
+}

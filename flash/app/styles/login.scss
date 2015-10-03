@@ -1,0 +1,15 @@
+.login-outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+}
+.login-inner {
+  max-width: 35%;
+  text-align: center;
+
+  input, button {
+    display: block;
+    margin: 0 auto 0.5em;
+  }
+}

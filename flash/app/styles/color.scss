@@ -1,0 +1,37 @@
+$color-brand: #14C73D;
+$color-primary: #3498DB;
+$color-warning: #E74C3C;
+
+$color-background: #ECF0F1;
+$color-text: #2C3E50;
+
+$color-button: #e0e0e0;
+$color-button-hover: #e6e6e6;
+
+.brand {
+  color: $color-brand;
+}
+
+.primary {
+  color: $color-primary;
+}
+
+.warning {
+  color: $color-warning;
+}
+
+.lighten {
+  color: tint($color-text, 20%);
+}
+
+.bg-brand {
+  background: $color-brand;
+}
+
+.bg-primary {
+  background: $color-primary;
+}
+
+.bg-warning {
+  background: $color-warning;
+}
