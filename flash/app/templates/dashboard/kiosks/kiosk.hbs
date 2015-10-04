@@ -1,1 +1,128 @@
-{{outlet}}
+<div class="page kiosk">
+  <h1>Store {{model.id}} - Queen Street Halifax</h1>
+  <h3>3 Flash Kiosks</h3>
+
+  {{!-- Stats --}}
+  <h2 class="insight-title">Flash Sales</h2>
+  <div class="box-container">
+    <div class="box">
+      <h2>Last Flash Sale</h2>
+      <div class="box-container">
+        <div class="box no-border no-pad">
+          <p>Lay's Chips - 30%</p>
+          <p>Oct 2 2015, 2:30pm</p>
+          <p>10,000 Sold</p>
+          <button>Flash Sale Again</button>
+        </div>
+        <div class="box no-border no-pad">
+          <img src="assets/images/lays-classic.png" alt="Lays">
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <h2>Best Flash Sale</h2>
+      <div class="box-container">
+        <div class="box no-border no-pad">
+          <p>Apples - 50%</p>
+          <p>Aug 2 2015, 2:30pm</p>
+          <p>1,000,000 Sold</p>
+          <button>Flash Sale Again</button>
+        </div>
+        <div class="box no-border no-pad">
+          <img src="assets/images/apple.png" alt="Lays">
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <h2>Worst Flash Sale</h2>
+      <div class="box-container">
+        <div class="box no-border no-pad">
+          <p>Glad Bags - 50%</p>
+          <p>Aug 10 2015, 2:30pm</p>
+          <p>1,000 Sold</p>
+          <button>Flash Sale Again</button>
+        </div>
+        <div class="box no-border no-pad">
+          <img src="assets/images/glad-bags.png" alt="Lays">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Polls --}}
+  <h2 class="insight-title">Polls</h2>
+  <div class="box-container">
+    <div class="box">
+      <h2>Yesterdays Poll <small>1311 Votes</small></h2>
+      <div class="box-container">
+        <div class="box no-border no-pad">
+          <p>Favorite fruit</p>
+          <ul>
+            <li>Banana</li>
+            <li>Apple</li>
+            <li>Orange</li>
+          </ul>
+        </div>
+        <div class="box no-border no-pad">
+          <img src="assets/images/lays-classic.png" alt="Lays">
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <h2>Todays Poll <small>610 Votes</small></h2>
+      <div class="box-container">
+        <div class="box no-border no-pad">
+          <p>Favorite flavor of Lay's chips</p>
+          <ul>
+            <li>BBQ</li>
+            <li>All Dressed</li>
+            <li>Sour Cream & Onion</li>
+          </ul>
+        </div>
+        <div class="box no-border no-pad">
+          <img src="assets/images/lays-classic.png" alt="Lays">
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <h2>Tomorrow's Poll</h2>
+      {{#if tomorrowsPoll}}
+        <div class="box-container">
+          <div class="box no-border no-pad">
+            <p>Favorite fruit</p>
+            <ul>
+              <li>Banana</li>
+              <li>Apple</li>
+              <li>Orange</li>
+            </ul>
+          </div>
+          <div class="box no-border no-pad">
+            <img src="assets/images/lays-classic.png" alt="Lays">
+          </div>
+        </div>
+      {{else}}
+        <button class="new-poll" {{action "newPoll"}}>
+          {{fa-icon "plus" size=3}} <br>
+          New Poll
+        </button>
+      {{/if}} {{!-- tomorrowsPoll --}}
+    </div>
+  </div>
+
+  {{!-- Airmiles --}}
+  <h2 class="insight-title">Airmiles</h2>
+  <div class="box-container">
+    <div class="box">
+      <h2>New</h2>
+      <p>Today: 13 sign ups</p>
+      <p>Yesterday: 50 sign ups</p>
+      <p>Month: 1300 sign ups</p>
+    </div>
+    <div class="box">
+      <h2>Existing</h2>
+      <p>Today: 13,000 miles</p>
+      <p>Yesterday: 30,000 miles</p>
+      <p>Month: 1,300,000 miles</p>
+    </div>
+  </div>
+</div>

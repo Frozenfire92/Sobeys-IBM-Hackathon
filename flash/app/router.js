@@ -9,7 +9,7 @@ Router.map(function() {
   this.route('login');
   this.route('dashboard', function() {
     this.route('kiosks', function() {
-      this.route('kiosk');
+      this.route('kiosk', { 'path' : "/:id" });
     });
   });
 });

@@ -1,0 +1,25 @@
+.kiosk {
+  .insight-title {
+    margin-top: 1em;
+  }
+
+  .box {
+    font-size: 0.9em;
+    img {
+      height: 100px;
+      width: auto;
+      float: right;
+    }
+    button:not(.new-poll) {
+      position: absolute;
+      bottom: 0;
+    }
+    button.new-poll {
+      // width: 50%;
+      // height: 50%;
+      padding: 1em 2em;
+      margin: 1em auto 0;
+      display: block;
+    }
+  }
+}

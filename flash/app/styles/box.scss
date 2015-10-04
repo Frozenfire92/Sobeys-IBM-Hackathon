@@ -1,0 +1,28 @@
+@import "color";
+
+.box-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+
+  .box {
+    -webkit-flex: 1 0 30%;
+    flex: 1 0 30%;
+    min-height: 3em;
+    background: #eee;
+    border: 1px solid #aaa;
+    margin: 0.25em;
+    padding: 0.75em;
+    position: relative;
+
+    &.no-border {
+      border: none;
+    }
+
+    &.no-pad {
+      padding: 0;
+    }
+  }
+}
+

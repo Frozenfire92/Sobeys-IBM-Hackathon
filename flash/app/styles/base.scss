@@ -15,6 +15,20 @@ html, body {
   color: $color-text;
 }
 
+h1,h2,h3,h4,h5,h6,
+p {
+  margin: 0;
+}
+
+small {
+  font-size: 0.7em;
+  color: lighten($color-text, 30%);
+}
+
+ul {
+  padding-left: 20px;
+}
+
 .app-container {
   position: absolute;
   top: 0;
