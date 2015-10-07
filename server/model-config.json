@@ -31,5 +31,9 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "DayStat": {
+    "dataSource": "db",
+    "public": true
   }
 }

@@ -1,6 +1,12 @@
 {
+  "memorydb": {
+    "name": "memorydb",
+    "connector": "memory"
+  },
   "db": {
     "name": "db",
-    "connector": "memory"
+    "connector": "mysql",
+    "database": "flash",
+    "host": "localhost"
   }
 }

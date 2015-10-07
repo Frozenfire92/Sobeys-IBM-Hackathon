@@ -1,0 +1,43 @@
+{
+  "name": "DayStat",
+  "plural": "DayStats",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "day": {
+      "type": "date",
+      "required": true
+    },
+    "storeId": {
+      "type": "number",
+      "required": true
+    },
+    "itemId": {
+      "type": "number",
+      "required": true
+    },
+    "topQuantity": {
+      "type": "number",
+      "required": true
+    },
+    "worstQuantity": {
+      "type": "number",
+      "required": true
+    },
+    "topAmount": {
+      "type": "number",
+      "required": true
+    },
+    "worstAmount": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

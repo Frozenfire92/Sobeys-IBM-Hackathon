@@ -1,5 +1,9 @@
+
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+
+// Default NODE_ENV is 'development'
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var app = module.exports = loopback();
 
