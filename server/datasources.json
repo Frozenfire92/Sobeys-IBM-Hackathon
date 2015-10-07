@@ -4,9 +4,9 @@
     "connector": "memory"
   },
   "db": {
-    "name": "db",
-    "connector": "mysql",
+    "host": "localhost",
     "database": "flash",
-    "host": "localhost"
+    "name": "db",
+    "connector": "mysql"
   }
 }

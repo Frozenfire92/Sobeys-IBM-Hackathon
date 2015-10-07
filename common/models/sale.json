@@ -1,0 +1,55 @@
+{
+  "name": "Sale",
+  "plural": "Sales",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "transactionRk": {
+      "type": "number",
+      "mysql": {
+        "dataType": "bigint",
+        "dataLength": 11
+      }
+    },
+    "date": {
+      "type": "string"
+    },
+    "time": {
+      "type": "string"
+    },
+    "itemSk": {
+      "type": "number"
+    },
+    "retailOutletLocationSk": {
+      "type": "number"
+    },
+    "itemQuantity": {
+      "type": "number"
+    },
+    "itemWeight": {
+      "type": "number"
+    },
+    "salesUOMCode": {
+      "type": "string"
+    },
+    "sellingRetailAmount": {
+      "type": "number"
+    },
+    "promoSalesCode": {
+      "type": "string"
+    },
+    "regionCode": {
+      "type": "string"
+    },
+    "customerSk": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

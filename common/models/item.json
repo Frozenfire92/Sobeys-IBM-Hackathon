@@ -1,0 +1,33 @@
+{
+  "name": "Item",
+  "plural": "Items",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "sk": {
+      "type": "number"
+    },
+    "number": {
+      "type": "number"
+    },
+    "UPCCode": {
+      "type": "string"
+    },
+    "englishDescription": {
+      "type": "string"
+    },
+    "frenchDescription": {
+      "type": "string"
+    },
+    "taxable": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -35,5 +35,17 @@
   "DayStat": {
     "dataSource": "db",
     "public": true
+  },
+  "Store": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Item": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Sale": {
+    "dataSource": "db",
+    "public": true
   }
 }

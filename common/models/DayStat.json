@@ -11,11 +11,11 @@
       "type": "date",
       "required": true
     },
-    "storeId": {
+    "retailOutletLocationSk": {
       "type": "number",
       "required": true
     },
-    "itemId": {
+    "itemSk": {
       "type": "number",
       "required": true
     },

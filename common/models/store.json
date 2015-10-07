@@ -1,0 +1,48 @@
+{
+  "name": "Store",
+  "plural": "Stores",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "retailOutletLocationSk": {
+      "type": "number"
+    },
+    "retailOutletName": {
+      "type": "string"
+    },
+    "cityName": {
+      "type": "string"
+    },
+    "stateRegionCode": {
+      "type": "string"
+    },
+    "stateRegionDescription": {
+      "type": "string"
+    },
+    "countryCode": {
+      "type": "string"
+    },
+    "countryDescription": {
+      "type": "string"
+    },
+    "totalSize": {
+      "type": "number"
+    },
+    "totalSizeUOMCode": {
+      "type": "string"
+    },
+    "regionCode": {
+      "type": "number"
+    },
+    "regionDescription": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
