@@ -9,6 +9,38 @@
 - Clone the repository
 - `npm install`
 
+## Usage
+
+### Configuring Datasources for Database
+
+You have the following environment variables:
+- `FLASH_DB_NAME` - {optional, defaults to `flash`} Database name
+- `FLASH_DB_HOST` - {optional, defaults to `localhost`} Host name
+- `FLASH_DB_USER` - {required} User's name
+- `FLASH_DB_PASSWORD` - {required} User's password
+- `VCAP_SERVICES` - For Bluemix, see below for more details
+
+For example:
+
+```bash
+FLASH_DB_USER=USERNAME
+FLASH_DB_PASSWORD=PASSWORD
+```
+
+### Using Bluemix's `VCAP_SERVICES` Environment Variable
+
+To try locally, put your `VCAP_SERVICES` JSON in a file named `vcap_services.json`. Then run the following in your Terminal:
+
+```bash
+VCAP_SERVICES=$(cat vcap_services.json)
+export VCAP_SERVICES
+```
+
+This will set the `VCAP_SERVICES` environment variable to the contents of your `vcap_services.json` file and allow your API server to detect it when you run the server.
+
+**Note**: Currently only `cleardb` on Bluemix is supported.
+
+
 ### Creating the Database
 
 Start your MySQL server.
@@ -16,19 +48,6 @@ Run the following in your Terminal:
 
 ```bash
 node server/auto-update-tables.js
-```
-
-## Usage
-
-### Configuring Datasources for Database
-
-You have the following environment variables:
-- `FLASH_DB_USER`
-- `FLASH_DB_PASSWORD`
-
-```bash
-FLASH_DB_USER=USERNAME
-FLASH_DB_PASSWORD=PASSWORD
 ```
 
 ### Running
@@ -39,5 +58,5 @@ Your options for the `NODE_ENV` variable are:
 - production
 
 ```bash
-node .
+node start
 ```
