@@ -101,7 +101,7 @@
           </div>
         </div>
       {{else}}
-        <button class="new-poll" {{action "newPoll"}}>
+        <button class="new-poll" {{action "toggleModal"}}>
           {{fa-icon "plus" size=3}} <br>
           New Poll
         </button>
@@ -126,3 +126,5 @@
     </div>
   </div>
 </div>
+
+{{poll-modal shown=shown target=controller}}

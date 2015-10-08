@@ -20,9 +20,13 @@ p {
   margin: 0;
 }
 
-small {
+small:not(.right) {
   font-size: 0.7em;
   color: lighten($color-text, 30%);
+}
+
+small.right {
+  float: right;
 }
 
 ul {

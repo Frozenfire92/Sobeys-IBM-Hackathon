@@ -1,0 +1,52 @@
+<div class="page performance">
+  <h1>Performance</h1>
+  {{!-- Filtration --}}
+  <div class="box-container">
+    <div class="box">
+      <h3>Store</h3>
+      {{ember-selectize
+        content=controller.stores
+        optionValuePath="content.id"
+        optionLabelPath="content.name"
+        selection=controller.currentStore
+        placeholder="Select a store" }}
+    </div>
+    <div class="box">
+      <h3>Top/Worst</h3>
+      {{ember-selectize
+        content=controller.amount
+        optionValuePath="content.id"
+        optionLabelPath="content.name"
+        selection=controller.currentAmount
+        placeholder="Select amount to show" }}
+    </div>
+    <div class="box">
+      <h3>Product</h3>
+      {{ember-selectize
+        content=controller.products
+        optionValuePath="content.id"
+        optionLabelPath="content.name"
+        selection=controller.currentProduct
+        placeholder="Select a product" }}
+    </div>
+    <div class="box">
+      <h3>Filter</h3>
+      <ul>
+        <li {{action "activeFilter" "week"}} class={{weekClass}}>Week</li>
+        <li {{action "activeFilter" "month"}} class={{monthClass}}>Month</li>
+        <li {{action "activeFilter" "year"}} class={{yearClass}}>Year</li>
+        <li {{action "activeFilter" "custom"}} class={{customClass}}>Custom {{date-picker date=fromDate valueFormat='date'}} To {{date-picker date=toDate valueFormat='date'}}</li>
+      </ul>
+    </div>
+  </div>
+
+  {{!-- Graphs --}}
+  {{#if filterSelected}}
+    <div class="box-container">
+      <div class="box">
+        <h3>Graph <small class="right"><button {{action "flashSale"}}>Flash Sale</button></small></h3>
+        {{c3-chart data=chartData.data axis=chartData.axis}}
+      </div>
+    </div>
+  {{/if}}
+</div>

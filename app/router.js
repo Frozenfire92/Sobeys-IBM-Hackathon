@@ -11,6 +11,9 @@ Router.map(function() {
     this.route('kiosks', function() {
       this.route('kiosk', { 'path' : "/:id" });
     });
+    this.route('performance', {}, function() {
+      this.route('performance', {});
+    });
   });
 });
 

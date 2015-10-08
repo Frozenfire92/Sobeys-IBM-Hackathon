@@ -23,6 +23,11 @@
     &.no-pad {
       padding: 0;
     }
+
+    &.box-two {
+      -webkit-flex: 1 0 40%;
+      flex: 1 0 40%;
+    }
   }
 }
 

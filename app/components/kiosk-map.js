@@ -38,7 +38,6 @@ export default Ember.Component.extend({
       });
 
       marker.addListener('click', function(){
-        console.log('clicked', this.storeId);
         self.get('target').transitionToRoute('dashboard.kiosks.kiosk', this.storeId);
       });
 
