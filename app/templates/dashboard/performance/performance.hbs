@@ -23,8 +23,8 @@
     <div class="box">
       <h3>Product</h3>
       {{ember-selectize
-        content=controller.products
-        optionValuePath="content.id"
+        content=controller.realProducts
+        optionValuePath="content.sk"
         optionLabelPath="content.name"
         selection=controller.currentProduct
         placeholder="Select a product" }}
@@ -45,7 +45,7 @@
     <div class="box-container">
       <div class="box">
         <h3>Graph <small class="right"><button {{action "flashSale"}}>Flash Sale</button></small></h3>
-        {{c3-chart data=chartData.data axis=chartData.axis}}
+        {{c3-chart data=chartData axis=axis}}
       </div>
     </div>
   {{/if}}
