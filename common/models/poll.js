@@ -38,7 +38,11 @@ module.exports = function(Poll) {
         var answers = _.indexBy(poll.answers, 'id');
         _.each(responses, function(response) {
           var answer = answers[response.answer];
-          answer.responses += 1;
+          if (answer && answer.responses) {
+            answer.responses += 1;
+          } else {
+            // Invalid vote, ignore it
+          }
         });
         return cb(null, poll);
       }]
