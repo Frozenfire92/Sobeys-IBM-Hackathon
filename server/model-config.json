@@ -34,7 +34,7 @@
   },
   "DayStat": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "Store": {
     "dataSource": "db",
@@ -45,6 +45,14 @@
     "public": true
   },
   "Sale": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Poll": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Response": {
     "dataSource": "db",
     "public": true
   }

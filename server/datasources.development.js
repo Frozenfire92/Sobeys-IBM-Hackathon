@@ -43,6 +43,6 @@ module.exports = {
     "host": host,
     "user": user,
     "password": password,
-    "connectionLimit": 32
+    "connectionLimit": 2
   }
 };

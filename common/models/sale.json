@@ -40,9 +40,7 @@
     },
     "sellingRetailAmount": {
       "type": "number",
-      "mysql": {
-        "dataType": "float"
-      }
+      "dataType": "float"
     },
     "promoSalesCode": {
       "type": "string"

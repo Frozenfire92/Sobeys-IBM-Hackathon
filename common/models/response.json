@@ -1,0 +1,27 @@
+{
+  "name": "Response",
+  "plural": "Responses",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "poll": {
+      "type": "number",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "answer": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
