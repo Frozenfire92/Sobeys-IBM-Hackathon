@@ -134,12 +134,12 @@
             <div class="box-left">
                 <h1>Register for Airmiles</h1>
                 <h2>And get 100 bonus airmiles</h2>
-                <h2>Text "New" to (902)-123-3456</h2>
+                <h2>Text "New" to (450) 823-2082</h2>
             </div>
             <div class="box-right">
                 <h1>Existing Airmiles Customer</h1>
                 <h2>Get 150 bonus airmiles</h2>
-                <h2>Text "Existing" to (902)-123-3456</h2>
+                <h2>Text "Existing" to (450) 823-2082</h2>
             </div>
             <div class="logo">
                 <img src="airmiles.png" alt="Airmiles" class="logo">
@@ -149,7 +149,7 @@
             <div class="box-left">
                 <h1 id="question"></h1>
                 <h2>Text your number response to</h2>
-                <h1>(902)-123-3456</h1>
+                <h1>(450) 823-2082</h1>
                 <h2 id="answerone"></h2>
                 <h2 id="answertwo"></h2>
                 <h2 id="answerthree"></h2>
@@ -165,7 +165,7 @@
         </div>
     </div>
     <div class="feedback-banner">
-        Text your anonymous feedback about this store to (902)-123-4567 anytime
+        Text your anonymous feedback about this store to (450) 823-2082 anytime
     </div>
 
     <script type="text/javascript" src="d3.min.js"></script>
@@ -188,17 +188,17 @@
 
         //TODO
         var request = new XMLHttpRequest();
-        request.open('GET', '/my/url', true);
+        request.open('GET', 'http://flash-api.mybluemix.net/api/Polls/12/stats', true);
 
         request.onload = function() {
           if (request.status >= 200 && request.status < 400) {
-            var data = JSON.parse(request.responseText);
+            var data = JSON.parse(request.responseText).poll;
             question.innerHTML = data.question;
             pieData = [];
             for (var i = 0; i < data.answers.length; i++) {
-                if (data.answers[i].id == 1){ answerone.innerHTML = "1" + data.answers[i].name; }
-                if (data.answers[i].id == 2){ answertwo.innerHTML = "2" + data.answers[i].name; }
-                if (data.answers[i].id == 3){ answerthree.innerHTML = "3" + data.answers[i].name; }
+                if (data.answers[i].id == 1){ answerone.innerHTML = "1 " + data.answers[i].name; }
+                if (data.answers[i].id == 2){ answertwo.innerHTML = "2 " + data.answers[i].name; }
+                if (data.answers[i].id == 3){ answerthree.innerHTML = "3 " + data.answers[i].name; }
                 pieData.push({
                     label : data.answers[i].id,
                     value : data.answers[i].responses
@@ -210,15 +210,16 @@
 
         request.send();
 
-        var socket = io('http://localhost');
+        var socket = io('http://flash-api.mybluemix.net');
         socket.on('poll-changed', function (data) {
             console.log(data);
+            data = data.poll;
             question.innerHTML = data.question;
             pieData = [];
             for (var i = 0; i < data.answers.length; i++) {
-                if (data.answers[i].id == 1){ answerone.innerHTML = "1" + data.answers[i].name; }
-                if (data.answers[i].id == 2){ answertwo.innerHTML = "2" + data.answers[i].name; }
-                if (data.answers[i].id == 3){ answerthree.innerHTML = "3" + data.answers[i].name; }
+                if (data.answers[i].id == 1){ answerone.innerHTML = "1 " + data.answers[i].name; }
+                if (data.answers[i].id == 2){ answertwo.innerHTML = "2 " + data.answers[i].name; }
+                if (data.answers[i].id == 3){ answerthree.innerHTML = "3 " + data.answers[i].name; }
                 pieData.push({
                     label : data.answers[i].id,
                     value : data.answers[i].responses
@@ -269,6 +270,9 @@
         var nextPageEl = null;
         pages = ["airmiles", "poll", "fact"];
         setInterval(function(){
+            nextPage();
+        }, 60000);
+        function nextPage(){
             currentPageEl = document.getElementById(pages[currentPage]);
             if (currentPageEl.classList){
               currentPageEl.classList.add("hidden");
@@ -287,12 +291,12 @@
             else{
               nextPageEl.className = nextPageEl.className.replace(new RegExp('(^|\\b)' + "hidden".split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
             }
-        }, 60000);
+        }
     </script>
 
     <!-- Flash Sale -->
     <script>
-        var socket = io('http://localhost');
+        var socket = io('http://flash-api.mybluemix.net');
         socket.on('flash-sale', function (data) {
             console.log(data);
             turnFlashSaleOn(data.text, data.ends);

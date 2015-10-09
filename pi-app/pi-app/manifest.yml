@@ -1,0 +1,8 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  name: sobeys-flash-kiosk
+  host: sobeys-flash-kiosk
+  disk_quota: 1024M
