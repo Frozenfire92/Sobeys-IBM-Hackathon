@@ -9,36 +9,35 @@ export default Ember.Controller.extend({
   realProducts: Ember.A(),
 
   products: function(){
-    var mock = this.get('mockProducts');
-    console.log('mock', mock);
-    var top = _.map(mock.top, function(d){
-        return d.product;
-    });
-    var bottom = _.map(mock.bottom, function(d){
-        return d.product;
-    });
-    var allproducts = _.union(top, bottom);
-    var realProducts = this.get('realProducts');
-    var promise = new Promise(function(resolve, reject){
-      resolve
-    })
-    console.log('allproducts', allproducts);
-    _.each(allproducts, function(p){
-      $.get('http://flash-api.mybluemix.net/api/Items?filter=%7B%22where%22%3A%7B%22sk%22%3A'+p+'%7D%7D').done(function(d){
-        console.log(d);
-        if (d[0].englishDescription){
-          realProducts.pushObject({sk: p, name: d[0].englishDescription});
-        }
-      });
-    });
+    // var mock = this.get('mockProducts');
+    // console.log('mock', mock);
+    // var top = _.map(mock.top, function(d){
+    //     return d.product;
+    // });
+    // var bottom = _.map(mock.bottom, function(d){
+    //     return d.product;
+    // });
+    // var allproducts = _.union(top, bottom);
+    // var realProducts = this.get('realProducts');
+    // var promise = new Promise(function(resolve, reject){
+    //   resolve
+    // })
+    // console.log('allproducts', allproducts);
+    // _.each(allproducts, function(p){
+    //   $.get('http://flash-api.mybluemix.net/api/Items?filter=%7B%22where%22%3A%7B%22sk%22%3A'+p+'%7D%7D').done(function(d){
+    //     console.log(d);
+    //     if (d[0].englishDescription){
+    //       realProducts.pushObject({sk: p, name: d[0].englishDescription});
+    //     }
+    //   });
+    // });
   },
 
   amount: [
+    { id: 3, name: "3" },
+    { id: 5, name: "5" },
     { id: 10, name: "10" },
-    { id: 25, name: "25" },
-    { id: 50, name: "50" },
-    { id: 75, name: "75" },
-    { id: 100, name: "100" },
+    { id: 20, name: "20" },
   ],
 
   init: function(){
@@ -48,6 +47,7 @@ export default Ember.Controller.extend({
     this.set('toDate', today);
     this.set('fromDate', yesterday);
     this.set('currentAmount', this.get('amount')[0]);
+    this.set('currentStore', this.get('stores')[0]);
     console.log(this.get('model'));
     this.products();
   },
@@ -984,9 +984,10 @@ export default Ember.Controller.extend({
     data: {
             x: 'x',
             columns: [
-                ['x', '2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04', '2013-01-05', '2013-01-06'],
-                ['data1', 30, 200, 100, 400, 150, 250],
-                ['data2', 130, 340, 200, 500, 250, 350]
+                ['x', '2015-07-01', '2015-07-02', '2015-07-03', '2015-07-04', '2015-07-05', '2015-07-06', '2015-07-07', '2015-07-08', '2015-07-09', '2015-07-10', '2015-07-11', '2015-07-12', '2015-07-13', '2015-07-14', '2015-07-15', '2015-07-16', '2015-07-17', '2015-07-18', '2015-07-19', '2015-07-20', '2015-07-21', '2015-07-22', '2015-07-23', '2015-07-24', '2015-07-25', '2015-07-26', '2015-07-27', '2015-07-28', '2015-07-29'],
+                ["Apples", 120, 50, 138, 67, 46, 32, 47, 88, 104, 65, 127, 94, 107, 41, 132, 84, 87, 115, 77, 120, 33, 80, 90, 130, 45, 32, 108, 105, 76, 146],
+                ["Lays Chips", 34, 18, 17, 87, 56, 23, 37, 20, 10, 64, 28, 75, 70, 75, 74, 69, 25, 31, 27, 58, 94, 35, 29, 9, 20, 1, 6, 31, 4, 45],
+                ["Glad Garbage Bags", 9, 8, 28, 16, 25, 6, 5, 15, 6, 11, 23, 9, 25, 6, 6, 4, 14, 20, 24, 14, 24, 1, 1, 6, 22, 3, 6, 15, 13, 3]
             ]
         }
   },
@@ -1009,6 +1010,8 @@ export default Ember.Controller.extend({
   customClass: function(){
     return this.get('activeFilter') == "custom" ? "active" : "";
   }.property('activeFilter'),
+  flashshown: false,
+
 
   actions: {
     activeFilter: function(filter){
@@ -1016,6 +1019,16 @@ export default Ember.Controller.extend({
     },
     flashSale: function(){
       console.log(this.get('currentStore'), this.get('currentProduct'));
+      this.set('flashitem', {
+        sk: 11601504,
+        name: "Apples - 50% off",
+        date: moment(new Date(1438525800000)).format("MMM D YYYY, h:mm a"),
+        sold: 1000000
+      });
+      this.toggleProperty('flashshown');
+    },
+    toggleFlashModal: function(type){
+      this.toggleProperty('flashshown');
     }
   }
 });

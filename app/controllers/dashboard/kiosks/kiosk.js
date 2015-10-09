@@ -4,16 +4,19 @@ export default Ember.Controller.extend({
   pollshown: false,
   flashshown: false,
   lastFlash: {
+    sk: 14071325,
     name: "Lay's Chips - 30% off",
     date: moment(new Date(1443796200000)).format("MMM D YYYY, h:mm a"),
     sold: 10000
   },
   bestFlash: {
+    sk: 11601504,
     name: "Apples - 50% off",
     date: moment(new Date(1438525800000)).format("MMM D YYYY, h:mm a"),
     sold: 1000000
   },
   worstFlash: {
+    sk: 11732627,
     name: "Glad Bags - 50% off",
     date: moment(new Date(1439164800000)).format("MMM D YYYY, h:mm a"),
     sold: 1000

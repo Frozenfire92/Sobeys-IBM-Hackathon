@@ -1,0 +1,35 @@
+<div class="page feedback">
+  <h1>Feedback</h1>
+  <div class="box-container">
+    <div class="box">
+      <h3>Store</h3>
+      {{ember-selectize
+        content=controller.stores
+        optionValuePath="content.id"
+        optionLabelPath="content.name"
+        selection=controller.currentStore
+        placeholder="Select a store" }}
+    </div>
+    <div class="box">
+      <h3>Search</h3>
+      {{input type="text" placeholder="search feedback"}}
+    </div>
+  </div>
+  <div class="box-container filtration">
+    <div class="box">
+      <h3>Filter</h3>
+      <ul>
+        <li {{action "activeFilter" "week"}} class={{weekClass}}>Week</li>
+        <li {{action "activeFilter" "month"}} class={{monthClass}}>Month</li>
+        <li {{action "activeFilter" "year"}} class={{yearClass}}>Year</li>
+        <li {{action "activeFilter" "custom"}} class={{customClass}}>Custom {{date-picker date=fromDate valueFormat='date'}} To {{date-picker date=toDate valueFormat='date'}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <ul>
+    {{#each theFeedback as |response|}}
+      <li class="feedback">{{response.date}} - {{response.feedback}}</li>
+    {{/each}}
+  </ul>
+</div>

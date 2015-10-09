@@ -14,10 +14,19 @@ export default Ember.Component.extend({
       this.get('target').send('toggleFlashModal');
     },
     save: function(){
+      var fi = this.get('flashitem');
       var self = this;
       var ends = new Date();
       ends.setMinutes(ends.getMinutes() + self.get('duration'));
       console.log('ends', ends);
+      $.post('http://flash-api.mybluemix.net/api/FlashSales', {
+        itemSk: fi.sk,
+        endDate: ends,
+        discount: self.get('discount')
+      }).done(function(d){
+        console.log('done', d);
+        this.send('toggleModal');
+      })
     }
   }
 });

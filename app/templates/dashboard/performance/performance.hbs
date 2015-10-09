@@ -41,12 +41,13 @@
   </div>
 
   {{!-- Graphs --}}
-  {{#if filterSelected}}
+  {{!-- {{#if filterSelected}} --}}
     <div class="box-container">
       <div class="box">
         <h3>Graph <small class="right"><button {{action "flashSale"}}>Flash Sale</button></small></h3>
-        {{c3-chart data=chartData axis=axis}}
+        {{c3-chart data=chartData.data axis=axis}}
       </div>
     </div>
-  {{/if}}
+  {{!-- {{/if}} --}}
 </div>
+{{flash-modal shown=flashshown target=controller flashitem=flashitem}}

@@ -32,4 +32,25 @@ export default function(){
     this.use('toRight'),
     this.reverse('toLeft')
   );
+
+  this.transition(
+    this.fromRoute('dashboard.kiosks'),
+    this.toRoute('dashboard.performance'),
+    this.use('toUp'),
+    this.reverse('toDown')
+  );
+
+  this.transition(
+    this.fromRoute('dashboard.kiosks'),
+    this.toRoute('dashboard.feedback'),
+    this.use('toUp'),
+    this.reverse('toDown')
+  );
+
+  this.transition(
+    this.fromRoute('dashboard.performance'),
+    this.toRoute('dashboard.feedback'),
+    this.use('toUp'),
+    this.reverse('toDown')
+  );
 }

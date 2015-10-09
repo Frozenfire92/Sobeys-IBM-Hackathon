@@ -19,11 +19,11 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      'script-src': "'self' 'unsafe-eval' https://*.googleapis.com https://*.gstatic.com https://cdn.socket.io",
+      'script-src': "'self' 'unsafe-eval' https://*.googleapis.com https://*.gstatic.com https://cdn.socket.io http://flash-api.mybluemix.net/api",
       'img-src': "'self' https://*.googleapis.com https://*.gstatic.com data *",
       'font-src': "'self' https://*.gstatic.com",
       'style-src': "'self' 'unsafe-inline' https://*.googleapis.com",
-      'connect-src': "'self' * http://flash-api.mybluemix.net https://cdn.socket.io"
+      'connect-src': "'self' * http://flash-api.mybluemix.net https://cdn.socket.io http://flash-api.mybluemix.net/api"
     }
   };
 

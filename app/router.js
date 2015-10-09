@@ -14,6 +14,7 @@ Router.map(function() {
     this.route('performance', {}, function() {
       this.route('performance', { 'path' : "/:id" });
     });
+    this.route('feedback', {});
   });
 });
 

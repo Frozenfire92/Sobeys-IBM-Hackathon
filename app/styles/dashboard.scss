@@ -68,6 +68,16 @@
           margin: 0 0 1em;
         }
       }
+
+      &.feedback{
+        ul {
+          font-size: 1.15em;
+          li {
+            list-style-type: none;
+            margin-bottom: 0.5em;
+          }
+        }
+      }
     }
   }
 }
@@ -82,4 +92,27 @@
 .center-inner {
   max-width: 60%;
   text-align: center;
+}
+
+.filtration {
+  font-size: 0.9em;
+  input {
+    display: inline-block;
+    width: 30%;
+    &:nth-of-type(1){
+      margin-left: 1em;
+    }
+  }
+  ul {
+    list-style: none;
+    li {
+      cursor: pointer;
+      display: inline-block;
+      margin-right: 2em;
+      opacity: 0.3;
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
 }
