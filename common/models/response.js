@@ -58,7 +58,7 @@ module.exports = function(Response) {
           return cb(null, poll);
         });
       },
-      // Create new
+      // Create new Response
       function(poll, cb) {
         // TODO: Upsert (update or insert)
         // Insert Response for Phone+Poll
@@ -69,9 +69,15 @@ module.exports = function(Response) {
           answer: selection,
         }, cb);
       }
-    ], function(err, result) {
-      console.log('response', err, result);
-      return cb(err, result);
+    ], function(err, response) {
+      // console.log('response', err, response);
+      // Broadcast updated Poll stats
+      Poll.stats(response.poll, function(err, stats) {
+        if (!err) {
+          app.io.emit('poll-changed', stats);
+        }
+      });
+      return cb(err, response);
     });
 
   }
