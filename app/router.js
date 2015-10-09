@@ -12,7 +12,7 @@ Router.map(function() {
       this.route('kiosk', { 'path' : "/:id" });
     });
     this.route('performance', {}, function() {
-      this.route('performance', {});
+      this.route('performance', { 'path' : "/:id" });
     });
   });
 });

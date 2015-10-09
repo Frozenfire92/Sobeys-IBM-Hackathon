@@ -19,4 +19,17 @@ export default function(){
     this.use('toLeft'),
     this.reverse('toRight')
   );
+
+  this.transition(
+    this.fromRoute('dashboard.index'),
+    this.use('toRight'),
+    this.reverse('toLeft')
+  );
+
+  this.transition(
+    this.fromRoute('dashboard.performance.index'),
+    this.toRoute('dashboard.performance.performance'),
+    this.use('toRight'),
+    this.reverse('toLeft')
+  );
 }
