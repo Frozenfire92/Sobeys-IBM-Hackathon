@@ -1,10 +1,328 @@
 <html>
 <head>
-    <title>D3</title>
+    <title>Sobey's Flash Kiosk</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+                 -moz-box-sizing: border-box;
+                      box-sizing: border-box;
+            font-family: "Verdana", "Arial", "Sans-serif"
+
+        }
+        html, body {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            padding: 0;
+            margin: 0;
+            font-size: 1em;
+            overflow: hidden;
+        }
+        .feedback-banner {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10%;
+            background-color: #16a085;
+            color: #ecf0f1;
+            padding: 0.75em;
+            text-align: center;
+            font-size: 1.75em;
+            vertical-align: middle;
+        }
+        .flash-sale-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10%;
+            background-color: #16a085;
+            color: #ecf0f1;
+            padding: 0.75em;
+            text-align: center;
+            font-size: 1.75em;
+            vertical-align: middle;
+        }
+        .flash-sale-banner.on {
+            background-color: #9b59b6;
+        }
+        .flash {
+            display: none;
+        }
+        .welcome {
+            display: block;
+        }
+        .on .flash {
+            display: block;
+        }
+        .on .welcome {
+            display: none;
+        }
+        .content {
+            position: absolute;
+            bottom: 10%;
+            top: 10%;
+            left: 0;
+            right: 0;
+        }
+        .page {
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            right: 0;
+            left: 0;
+            padding: 2%;
+            background-color: green;
+        }
+        .hidden {
+            display: none;
+        }
+        .airmiles {
+            background-color: #3498db;
+            color: #ecf0f1;
+        }
+        .poll {
+            background-color: #f1c40f;
+            color: #34495e;
+            font-size: 1.1em;
+        }
+        .fact {
+            background-color: #e74c3c;
+            color: #ecf0f1;
+            text-align: center;
+        }
+        .fact img {
+            height: 70%;
+            margin: 0 auto;
+            display: block;
+        }
+        .box-left,
+        .box-right {
+            text-align: center;
+            font-size: 1.1em;
+            max-width: 45%;
+        }
+        .box-left {
+            float: left;
+        }
+        .box-right {
+            float: right;
+        }
+        div.logo {
+            position: absolute;
+            bottom: 5%;
+            left: 0;
+            right: 0;
+        }
+        img.logo {
+            display: block;
+            height: 70%;
+            margin: 0 auto;
+        }
+    </style>
 </head>
-    <body>
-        <div id="chart"></div>
+<body>
+    <div id="flash-sale-banner" class="flash-sale-banner">
+        <div id="flash" class="flash"></div>
+        <div class="welcome">Thank you for shopping at Sobeys</div>
+    </div>
+    <div class="content">
+        <div id="airmiles" class="page airmiles">
+            <div class="box-left">
+                <h1>Register for Airmiles</h1>
+                <h2>And get 100 bonus airmiles</h2>
+                <h2>Text "New" to (902)-123-3456</h2>
+            </div>
+            <div class="box-right">
+                <h1>Existing Airmiles Customer</h1>
+                <h2>Get 150 bonus airmiles</h2>
+                <h2>Text "Existing" to (902)-123-3456</h2>
+            </div>
+            <div class="logo">
+                <img src="airmiles.png" alt="Airmiles" class="logo">
+            </div>
+        </div>
+        <div id="poll" class="page poll hidden">
+            <div class="box-left">
+                <h1 id="question"></h1>
+                <h2>Text your number response to</h2>
+                <h1>(902)-123-3456</h1>
+                <h2 id="answerone"></h2>
+                <h2 id="answertwo"></h2>
+                <h2 id="answerthree"></h2>
+            </div>
+            <div class="box-right poll">
+            </div>
+        </div>
+        <div id="fact" class="page fact hidden">
+            <h1>This store has sold</h1>
+            <h1>10,000kg</h1>
+            <h1>of apples this month</h1>
+            <img src="apple.png" alt="">
+        </div>
+    </div>
+    <div class="feedback-banner">
+        Text your anonymous feedback about this store to (902)-123-4567 anytime
+    </div>
+
     <script type="text/javascript" src="d3.min.js"></script>
-    <script type="text/javascript" src="d3_Test.js"></script>
-    </body>
+    <script type="text/javascript" src="socket.io-1.3.7.js"></script>
+
+    <!-- Pie Chart -->
+    <script>
+        w = window.innerWidth / 2;
+        h = window.innerHeight;
+
+        var svg = d3.select(".box-right.poll").append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        var question = document.getElementById('question');
+        var answerone = document.getElementById('answerone');
+        var answertwo = document.getElementById('answertwo');
+        var answerthree = document.getElementById('answerthree');
+        var pieData = null;
+
+        //TODO
+        var request = new XMLHttpRequest();
+        request.open('GET', '/my/url', true);
+
+        request.onload = function() {
+          if (request.status >= 200 && request.status < 400) {
+            var data = JSON.parse(request.responseText);
+            question.innerHTML = data.question;
+            pieData = [];
+            for (var i = 0; i < data.answers.length; i++) {
+                if (data.answers[i].id == 1){ answerone.innerHTML = "1" + data.answers[i].name; }
+                if (data.answers[i].id == 2){ answertwo.innerHTML = "2" + data.answers[i].name; }
+                if (data.answers[i].id == 3){ answerthree.innerHTML = "3" + data.answers[i].name; }
+                pieData.push({
+                    label : data.answers[i].id,
+                    value : data.answers[i].responses
+                });
+            };
+            showPieChart(pieData);
+          }
+        };
+
+        request.send();
+
+        var socket = io('http://localhost');
+        socket.on('poll-changed', function (data) {
+            console.log(data);
+            question.innerHTML = data.question;
+            pieData = [];
+            for (var i = 0; i < data.answers.length; i++) {
+                if (data.answers[i].id == 1){ answerone.innerHTML = "1" + data.answers[i].name; }
+                if (data.answers[i].id == 2){ answertwo.innerHTML = "2" + data.answers[i].name; }
+                if (data.answers[i].id == 3){ answerthree.innerHTML = "3" + data.answers[i].name; }
+                pieData.push({
+                    label : data.answers[i].id,
+                    value : data.answers[i].responses
+                });
+            };
+            showPieChart(pieData);
+        });
+
+        function showPieChart(data)
+        {
+             var r = 250,
+            color = d3.scale.category10();
+            // color = d3.scale.category20c();
+
+            var vis = d3.select("svg")
+                .data([data])
+                    .attr("width", w)
+                    .attr("height", h)
+                .append("svg:g")
+                    .attr("transform", "translate(" + r + "," + r + ")")
+            var arc = d3.svg.arc()
+                .outerRadius(r);
+            var pie = d3.layout.pie()
+                .value(function(d) { return d.value; });
+            var arcs = vis.selectAll("g.slice")
+                .data(pie)
+                .enter()
+                    .append("svg:g")
+                        .attr("class", "slice");
+                arcs.append("svg:path")
+                        .attr("fill", function(d, i) { return color(i); } )
+                        .attr("d", arc);
+                arcs.append("svg:text")
+                        .attr("transform", function(d) {
+                        d.innerRadius = 0;
+                        d.outerRadius = r;
+                        return "translate(" + arc.centroid(d) + ")";
+                    })
+                    .attr("text-anchor", "middle")
+                    .text(function(d, i) { return data[i].label; });
+        }
+    </script>
+
+    <!-- Switching Pages -->
+    <script>
+        var currentPage = 0;
+        var currentPageEl = null;
+        var nextPageEl = null;
+        pages = ["airmiles", "poll", "fact"];
+        setInterval(function(){
+            currentPageEl = document.getElementById(pages[currentPage]);
+            if (currentPageEl.classList){
+              currentPageEl.classList.add("hidden");
+            }
+            else{
+              currentPageEl.className += ' ' + "hidden";
+            }
+
+            currentPage++;
+            if (currentPage > 2) currentPage = 0;
+
+            nextPageEl = document.getElementById(pages[currentPage]);
+            if (nextPageEl.classList){
+              nextPageEl.classList.remove("hidden");
+            }
+            else{
+              nextPageEl.className = nextPageEl.className.replace(new RegExp('(^|\\b)' + "hidden".split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            }
+        }, 60000);
+    </script>
+
+    <!-- Flash Sale -->
+    <script>
+        var socket = io('http://localhost');
+        socket.on('flash-sale', function (data) {
+            console.log(data);
+            turnFlashSaleOn(data.text, data.ends);
+            var t = ends.getTime() - (new Date()).getTime();
+            setTimeout(function(){
+                turnFlashSaleOff();
+            }, t);
+        });
+
+        function turnFlashSaleOn(text, ends){
+            var flash = document.getElementById("flash");
+            flash.innerHTML = "Flash Sale! " + text + " until " + ends.toTimeString().slice(0,8);
+
+            var flashBanner = document.getElementById("flash-sale-banner");
+            if (flashBanner.classList){
+              flashBanner.classList.add("on");
+            }
+            else{
+              flashBanner.className += ' ' + "on";
+            }
+        }
+        function turnFlashSaleOff(){
+            var flashBanner = document.getElementById("flash-sale-banner");
+            if (flashBanner.classList){
+              flashBanner.classList.remove("on");
+            }
+            else{
+              flashBanner.className = flashBanner.className.replace(new RegExp('(^|\\b)' + "on".split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            }
+        }
+    </script>
+</body>
 </html>
