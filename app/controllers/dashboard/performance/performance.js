@@ -73,7 +73,7 @@ export default Ember.Controller.extend({
           console.log('product')
         }
         var x = _.pluck(mockProducts.top, "day");
-        var x.unshift('x');
+        x.unshift('x');
         return {
           x: 'x',
           columns: [

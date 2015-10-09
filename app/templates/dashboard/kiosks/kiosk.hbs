@@ -9,10 +9,10 @@
       <h2>Last Flash Sale</h2>
       <div class="box-container">
         <div class="box no-border no-pad">
-          <p>Lay's Chips - 30%</p>
-          <p>Oct 2 2015, 2:30pm</p>
-          <p>10,000 Sold</p>
-          <button>Flash Sale Again</button>
+          <p>{{lastFlash.name}}</p>
+          <p>{{lastFlash.date}}</p>
+          <p>{{lastFlash.sold}} Sold</p>
+          <button {{action "flashAgain" "last"}}>Flash Sale Again</button>
         </div>
         <div class="box no-border no-pad">
           <img src="assets/images/lays-classic.png" alt="Lays">
@@ -23,10 +23,10 @@
       <h2>Best Flash Sale</h2>
       <div class="box-container">
         <div class="box no-border no-pad">
-          <p>Apples - 50%</p>
-          <p>Aug 2 2015, 2:30pm</p>
-          <p>1,000,000 Sold</p>
-          <button>Flash Sale Again</button>
+          <p>{{bestFlash.name}}</p>
+          <p>{{bestFlash.date}}</p>
+          <p>{{bestFlash.sold}} Sold</p>
+          <button {{action "flashAgain" "best"}}>Flash Sale Again</button>
         </div>
         <div class="box no-border no-pad">
           <img src="assets/images/apple.png" alt="Lays">
@@ -37,10 +37,10 @@
       <h2>Worst Flash Sale</h2>
       <div class="box-container">
         <div class="box no-border no-pad">
-          <p>Glad Bags - 50%</p>
-          <p>Aug 10 2015, 2:30pm</p>
-          <p>1,000 Sold</p>
-          <button>Flash Sale Again</button>
+          <p>{{worstFlash.name}}</p>
+          <p>{{worstFlash.date}}</p>
+          <p>{{worstFlash.sold}} Sold</p>
+          <button {{action "flashAgain" "worst"}}>Flash Sale Again</button>
         </div>
         <div class="box no-border no-pad">
           <img src="assets/images/glad-bags.png" alt="Lays">
@@ -53,14 +53,14 @@
   <h2 class="insight-title">Polls</h2>
   <div class="box-container">
     <div class="box">
-      <h2>Yesterdays Poll <small>1311 Votes</small></h2>
+      <h2>Yesterdays Poll <small>{{yesterdaysPoll.votes}} Votes</small></h2>
       <div class="box-container">
         <div class="box no-border no-pad">
-          <p>Favorite fruit</p>
+          <p>{{yesterdaysPoll.question}}</p>
           <ul>
-            <li>Banana</li>
-            <li>Apple</li>
-            <li>Orange</li>
+            {{#each yesterdaysPoll.options as |option|}}
+              <li>{{option}}</li>
+            {{/each}}
           </ul>
         </div>
         <div class="box no-border no-pad">
@@ -69,14 +69,14 @@
       </div>
     </div>
     <div class="box">
-      <h2>Todays Poll <small>610 Votes</small></h2>
+      <h2>Todays Poll <small>{{todaysPoll.votes}} Votes</small></h2>
       <div class="box-container">
         <div class="box no-border no-pad">
-          <p>Favorite flavor of Lay's chips</p>
+          <p>{{todaysPoll.question}}</p>
           <ul>
-            <li>BBQ</li>
-            <li>All Dressed</li>
-            <li>Sour Cream & Onion</li>
+            {{#each todaysPoll.options as |option|}}
+              <li>{{option}}</li>
+            {{/each}}
           </ul>
         </div>
         <div class="box no-border no-pad">
@@ -127,4 +127,5 @@
   </div>
 </div>
 
-{{poll-modal shown=shown target=controller}}
+{{poll-modal shown=pollshown target=controller}}
+{{flash-modal shown=flashshown target=controller flashitem=flashitem}}

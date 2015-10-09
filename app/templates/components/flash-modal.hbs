@@ -3,7 +3,7 @@
         <div class="modal-frame">
 
             <div class="modal-title">
-                Create Tomorrow's Poll
+                Create Flash Sale
                 <div class="modal-close" {{action 'toggleModal'}}>
                   {{fa-icon "times" size=2}}
                 </div>
@@ -11,23 +11,19 @@
             <div class="modal-body">
                 <form>
                   <label>
-                    Title
-                    {{input value=title}}
+                    Item
+                    {{input value=item}}
                   </label>
                   <label>
-                    Option 1
+                    Discount %
                     {{input value=option1}}
                   </label>
                   <label>
-                    Option 2
-                    {{input value=option2}}
-                  </label>
-                  <label>
-                    Option 3
-                    {{input value=option3}}
+                    Duration (minutes)
+                    {{input value=time}}
                   </label>
                   <br>
-                  <button {{action "save"}}>Save Poll</button>
+                  <button {{action "save"}}>Start Flash Sale</button>
                 </form>
             </div>
         </div>
