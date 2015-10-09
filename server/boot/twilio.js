@@ -13,9 +13,18 @@ module.exports = function(server) {
   server.post('/api/sms', twilio.webhook(authToken, {
     validate: false
   }), function(req, res) {
-
-    var phone = req.body.From;
-    var msg = req.body.Body;
+    var body = req.body;
+    if (!body) {
+      return res.status(500).send('No body parsed');
+    }
+    var phone = body.From;
+    if (!phone) {
+      return res.status(500).send('No phone parsed');
+    }
+    var msg = body.Body;
+    if (!msg) {
+      return res.status(500).send('No msg parsed');
+    }
 
     Response.respondToPoll(null, phone, msg, function(err) {
       var twiml = new twilio.TwimlResponse();
