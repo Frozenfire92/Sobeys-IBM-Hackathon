@@ -1,0 +1,28 @@
+{
+  "name": "FlashSale",
+  "plural": "FlashSales",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "itemSk": {
+      "type": "number",
+      "required": true
+    },
+    "endDate": {
+      "type": "date",
+      "required": true
+    },
+    "discount": {
+      "type": "number",
+      "dataType": "float",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

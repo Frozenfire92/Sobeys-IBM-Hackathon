@@ -55,5 +55,9 @@
   "Response": {
     "dataSource": "db",
     "public": true
+  },
+  "FlashSale": {
+    "dataSource": "db",
+    "public": true
   }
 }

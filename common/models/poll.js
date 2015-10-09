@@ -10,13 +10,17 @@ module.exports = function(Poll) {
       // Get Poll
       poll: function(cb) {
         return Poll.findOne({
-          id: id
+          where: {
+            id: id
+          }
         }, cb);
       },
       // Get Responses for Poll
       responses: function(cb) {
         return Response.find({
-          poll: id
+          where: {
+            poll: id
+          }
         }, cb);
       },
       // Calculate stats

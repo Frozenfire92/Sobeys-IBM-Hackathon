@@ -42,15 +42,11 @@
     },
     "lat": {
       "type": "number",
-      "mysql": {
-        "dataType": "float"
-      }
+      "dataType": "float"
     },
     "lng": {
       "type": "number",
-      "mysql": {
-        "dataType": "float"
-      }
+      "dataType": "float"
     }
   },
   "validations": [],

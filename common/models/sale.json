@@ -31,9 +31,7 @@
     },
     "itemWeight": {
       "type": "number",
-      "mysql": {
-        "dataType": "float"
-      }
+      "dataType": "float"
     },
     "salesUOMCode": {
       "type": "string"

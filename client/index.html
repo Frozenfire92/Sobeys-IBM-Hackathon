@@ -5,16 +5,19 @@
   </head>
   <body>
     <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-    var socket = io();
-    socket.on('poll-changed', function(msg) {
-      console.log('poll-changed', msg);
-    });
+      var messages = document.getElementById('messages');
+      var socket = io();
+      socket.on('poll-changed', function(msg) {
+        console.log('poll-changed', msg);
+        messages.appendChild(document.createTextNode('poll-changed: '+JSON.stringify(msg)+'\n'));
+      });
+      socket.on('flash-sale', function(msg) {
+        console.log('flash-sale', msg);
+        messages.appendChild(document.createTextNode('flash-sale: '+JSON.stringify(msg)+'\n'));
+      });
     </script>
   </body>
 </html>
