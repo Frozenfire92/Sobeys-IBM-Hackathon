@@ -28,26 +28,82 @@ export default Ember.Controller.extend({
     this.set('toDate', today);
     this.set('fromDate', yesterday);
     this.set('currentAmount', this.get('amount')[0]);
+    console.log(this.get('model'));
   },
+
+  mockProducts: {
+    top: [
+        { day: "01JAN2015", product: "apples", amountSold: 12354.55, weightSold: 123, storeId: 123},
+        { day: "01SEP2015", product: "oranges", amountSold: 12354.55, weightSold: 123, storeId: 123},
+        { day: "01OCT2015", product: "bananas", amountSold: 12354.55, weightSold: 123, storeId: 123},
+        { day: "07OCT2015", product: "bbq lays chips", amountSold: 12354.55, weightSold: 123, storeId: 123},
+    ],
+
+    bottom: [
+        { day: "01JAN2015", product: "apples", amountSold: 12354.55, weightSold: 123, storeId: 123},
+        { day: "01SEP2015", product: "oranges", amountSold: 12354.55, weightSold: 123, storeId: 123},
+        { day: "01OCT2015", product: "bananas", amountSold: 12354.55, weightSold: 123, storeId: 123},
+        { day: "07OCT2015", product: "bbq lays chips", amountSold: 12354.55, weightSold: 123, storeId: 123},
+    ]
+  },
+
+  axis: {
+      x: {
+          type: 'timeseries',
+          tick: {
+              format: '%Y-%m-%d'
+          }
+      }
+  },
+
+  filteredData: function(){
+    var activeFilter = this.get('activeFilter');
+    var mockProducts = this.get('mockProducts');
+    var currentAmount = this.get('currentAmount').id;
+    var fromDate = this.get('fromDate');
+    var toDate = this.get('toDate');
+
+    switch(activeFilter){
+      case "week":
+        var colums = [];
+        for (var i=0; i<currentAmount; i++){
+          var product = _.sortBy(mockProducts.top, function(o){
+            return o.amountSold;
+          })[i];
+          console.log('product')
+        }
+        var x = _.pluck(mockProducts.top, "day");
+        var x.unshift('x');
+        return {
+          x: 'x',
+          columns: [
+            x,
+
+          ]
+        }
+        break;
+      case "month":
+        console.log('hello');
+        break;
+      case "year":
+        console.log('hello');
+        break;
+      case "custom":
+        console.log('hello');
+        break;
+      default:
+        break;
+    }
+  }.property('mockProducts', 'activeFilter', 'currentAmount', 'fromDate', 'toDate'),
 
   chartData: {
     data: {
             x: 'x',
-    //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
             columns: [
                 ['x', '2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04', '2013-01-05', '2013-01-06'],
-    //            ['x', '20130101', '20130102', '20130103', '20130104', '20130105', '20130106'],
                 ['data1', 30, 200, 100, 400, 150, 250],
                 ['data2', 130, 340, 200, 500, 250, 350]
             ]
-        },
-        axis: {
-            x: {
-                type: 'timeseries',
-                tick: {
-                    format: '%Y-%m-%d'
-                }
-            }
         }
   },
 
