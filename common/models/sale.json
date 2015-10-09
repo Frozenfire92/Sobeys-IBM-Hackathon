@@ -30,13 +30,19 @@
       "type": "number"
     },
     "itemWeight": {
-      "type": "number"
+      "type": "number",
+      "mysql": {
+        "dataType": "float"
+      }
     },
     "salesUOMCode": {
       "type": "string"
     },
     "sellingRetailAmount": {
-      "type": "number"
+      "type": "number",
+      "mysql": {
+        "dataType": "float"
+      }
     },
     "promoSalesCode": {
       "type": "string"

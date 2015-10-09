@@ -39,6 +39,18 @@
     },
     "regionDescription": {
       "type": "string"
+    },
+    "lat": {
+      "type": "number",
+      "mysql": {
+        "dataType": "float"
+      }
+    },
+    "lng": {
+      "type": "number",
+      "mysql": {
+        "dataType": "float"
+      }
     }
   },
   "validations": [],
