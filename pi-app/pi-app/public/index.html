@@ -213,7 +213,6 @@
         var socket = io('http://flash-api.mybluemix.net');
         socket.on('poll-changed', function (data) {
             console.log(data);
-            data = data.poll;
             question.innerHTML = data.question;
             pieData = [];
             for (var i = 0; i < data.answers.length; i++) {
@@ -221,7 +220,7 @@
                 if (data.answers[i].id == 2){ answertwo.innerHTML = "2 " + data.answers[i].name; }
                 if (data.answers[i].id == 3){ answerthree.innerHTML = "3 " + data.answers[i].name; }
                 pieData.push({
-                    label : data.answers[i].id,
+                    label : data.answers[i].id + " ("+data.answers[i].responses+")",
                     value : data.answers[i].responses
                 });
             };
@@ -299,7 +298,8 @@
         var socket = io('http://flash-api.mybluemix.net');
         socket.on('flash-sale', function (data) {
             console.log(data);
-            turnFlashSaleOn(data.text, data.ends);
+            var ends = new Date(data.ends);
+            turnFlashSaleOn(data.text, ends);
             var t = ends.getTime() - (new Date()).getTime();
             setTimeout(function(){
                 turnFlashSaleOff();
